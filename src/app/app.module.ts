@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     provideAnimationsAsync(),
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
   ],
   bootstrap: [AppComponent]
 })
