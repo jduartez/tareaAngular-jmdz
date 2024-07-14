@@ -1,0 +1,63 @@
+<button  (click)="openDialog()" mat-button>
+    <mat-icon>add</mat-icon> Crear Estudiantes
+  </button>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+          <ng-container  matColumnDef="id">
+            <!-- Encabezado -->
+            <th mat-header-cell appResaltado *matHeaderCellDef>ID</th>
+            <!-- Dato -->
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container> 
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th appResaltado mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name + ' ' +  element.last_name | initcap }}</td>
+    </ng-container>
+      
+
+    <ng-container matColumnDef="rut">
+      <th appResaltado mat-header-cell *matHeaderCellDef>Rut</th>
+      <td mat-cell *matCellDef="let element">{{ element.rut | formatrut}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="status">
+      <th appResaltado mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="startDate">
+      <th appResaltado mat-header-cell *matHeaderCellDef>Start Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.startDate | date: 'dd/MM/yyyy' }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="endDate">
+      <th appResaltado mat-header-cell *matHeaderCellDef>End Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.endDate | date: 'dd/MM/yyyy' }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <th appResaltado mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="editStudent(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+  
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="deleteStudent(element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <!-- Define qué columnas se mostrarán en la tabla -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
