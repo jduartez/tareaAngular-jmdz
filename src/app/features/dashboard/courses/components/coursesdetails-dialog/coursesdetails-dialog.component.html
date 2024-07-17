@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Detalle Curso</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="courseForm">
+        @if (editingCourse) {
+      <mat-form-field  class="col-12 md:col-5">
+        <h2>Id del Curso</h2>        
+       
+            <p>{{ editingCourse.id }}</p>
+       
+      </mat-form-field>
+  
+      <mat-form-field class="col-12 md:col-5">
+        <h2>Nombre del Curso</h2>       
+        {{editingCourse.title}}
+      
+      </mat-form-field>
+  
+      <mat-form-field class="col-12 md:col-5">
+        <h2>Descripción del Curso</h2>
+        {{editingCourse.description}}
+      </mat-form-field>
+    } 
+    </form>
+    <button mat-button class="close-icon" [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon><p>cerrar</p>
+    </button>
+  </mat-dialog-content>

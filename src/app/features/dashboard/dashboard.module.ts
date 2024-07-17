@@ -11,6 +11,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { StudentsModule } from './students/students.module';
 import {MatListModule} from '@angular/material/list';
 import { SharedModule } from '../../shared/shared.module';
+import { CoursesModule } from './courses/courses.module';
+import { EnrollmentsModule } from './enrollments/enrollments.module';
 
 
 
@@ -28,7 +30,9 @@ import { SharedModule } from '../../shared/shared.module';
     MatButtonModule,
     StudentsModule,
     MatListModule,
-    SharedModule
+    SharedModule,
+    CoursesModule,
+    EnrollmentsModule
   ]
 })
 export class DashboardModule { }

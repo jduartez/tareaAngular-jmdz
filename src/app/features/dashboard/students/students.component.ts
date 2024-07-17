@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { Students } from './models';
-
+import { StudentsService } from '../../../core/students.service';
 
 
 @Component({
@@ -21,40 +21,23 @@ export class StudentsComponent {
     'endDate',
     'actions',
   ];
-  dataSource: Students[] = [
-    {
-      id: '1',
-      name: 'JOSE MANUEL',
-      last_name: 'DUARTE',
-      rut: '11123456-7',
-      status: 'Aprobado',
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      id: '2',
-      name: 'Ricardo',
-      last_name: 'Araya',
-      rut: '12456789-0',
-      status: 'Rechazado',
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      id: '3',
-      name: 'Valeria',
-      last_name: 'Varela',
-      rut: '15678921-3',
-      status: 'Aprobado',
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-  ];
+  dataStudents: Students[] = [];
 
-
-  constructor(private matDialog: MatDialog) { }
+  isLoading = false;
+  constructor(private matDialog: MatDialog, private studentService: StudentsService ) { }
   students: string = '';
 
+  ngOnInit() {
+    this.loadStudents();
+  }
+
+  loadStudents() {
+    this.isLoading = true;
+    this.studentService.getStudents().subscribe((students) => {
+      this.dataStudents = students;
+      this.isLoading = false;
+    });
+  }
 
   openDialog(): void {
     this.matDialog
@@ -62,9 +45,17 @@ export class StudentsComponent {
       .afterClosed()
       .subscribe({
         next: (students) => {
-          console.log(students);
+         
+          this.isLoading = true;
 
-          this.dataSource = [...this.dataSource, students];
+          this.studentService.addStudents(students).subscribe({
+            next: (students) => {
+              this.dataStudents = [...students];
+            },
+            complete: () => {
+              this.isLoading = false;
+            },
+          });
         },
       });
   }
@@ -80,7 +71,7 @@ export class StudentsComponent {
           console.log(student);
 
           if (!!student) {
-            this.dataSource = this.dataSource.map((c) => {
+            this.dataStudents = this.dataStudents.map((c) => {
               if (c.id === student.id) {
                 return student;
               }
@@ -93,7 +84,7 @@ export class StudentsComponent {
 
 
   deleteStudent(id: string) {
-    this.dataSource = this.dataSource.filter((student) => student.id !== id);
+    this.dataStudents = this.dataStudents.filter((student) => student.id !== id);
   }
 
 }

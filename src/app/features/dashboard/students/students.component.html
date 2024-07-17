@@ -1,8 +1,14 @@
-<button  (click)="openDialog()" mat-button>
+<button  (click)="openDialog()" mat-flat-button color="primary">
     <mat-icon>add</mat-icon> Crear Estudiantes
   </button>
+
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataStudents" class="mat-elevation-z8"
+  *ngIf="!isLoading"
+    mat-table
+    [dataSource]="dataStudents"
+    >
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   

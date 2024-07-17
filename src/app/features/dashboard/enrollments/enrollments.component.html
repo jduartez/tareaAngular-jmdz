@@ -1,0 +1,92 @@
+
+<h1>Inscripciones</h1>
+<hr />
+
+@if (isLoading) {
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+} @else {
+
+    <select [(value)]="alumn" class="mat-primary">
+        <option *ngFor="let getLisStudents of getLisStudents()" [value]="getLisStudents.name">
+            {{getLisStudents.name}}
+        </option>
+    </select>
+    
+    <select [(value)]="cours" class="mat-primary">
+        <option *ngFor="let getLisCourse of getLisCourses()" [value]="getLisCourse.title">
+            {{getLisCourse.title}}
+        </option>
+    </select>
+
+
+    <button  mat-flat-button (click)="openDialog()" color="primary">+ Inscribir</button>
+
+<!-- <pre>{{ enrollments | json }}</pre> -->
+
+
+<!-- <button mat-flat-button (click)="openDialog()" color="primary">
+    <mat-icon>add</mat-icon> Crear Curso
+  </button> -->
+
+ 
+  
+  
+  
+  <table
+    *ngIf="!isLoading"
+    mat-table
+    [dataSource]="enrollments"
+    class="mat-elevation-z8"
+  >
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="alumno">
+      <!-- Encabezado -->
+      <th mat-header-cell *matHeaderCellDef>Nombre Alumno</th>
+      <!-- Dato -->
+      <td mat-cell *matCellDef="let element">{{ element.alumno }}</td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="curso">
+      <th mat-header-cell *matHeaderCellDef>Curso</th>
+      <td mat-cell *matCellDef="let element">{{ element.curso }}</td>
+    </ng-container>
+  
+   
+  
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <button mat-icon-button color="primary" (click)="editCourse(element)">
+          <mat-icon>edit</mat-icon>
+        </button> -->
+  
+        <!-- <button
+          mat-icon-button
+          color="primary"
+          (click)="deleteCourseById(element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button> -->
+  
+        <!--button mat-icon-button [routerLink]="element.id"-->
+        <!-- <button mat-icon-button  (click)="OpenDetailsCourse(element)">          
+          <mat-icon>visibility</mat-icon>
+        </button> -->
+      </td>
+    </ng-container>
+  
+    <!-- Define qué columnas se mostrarán en la tabla -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+
+
+}
+
+
+

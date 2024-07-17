@@ -29,6 +29,7 @@ export class StudentsDialogComponent implements OnInit {
       id: ['', Validators.required],
       name: ['', Validators.required],
       last_name: ['', Validators.required],
+      rut: ['', Validators.required],
       status: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
