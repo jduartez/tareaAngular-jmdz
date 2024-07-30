@@ -26,8 +26,8 @@ export class EnrollmentsDialogComponent {
   isEditing: boolean = false;
 
   
-  cur =  new FormControl('', Validators.required);
-  alum = new FormControl('', Validators.required);
+  cur =  new FormControl<any>('', Validators.required);
+  alum = new FormControl<any>('', Validators.required);
 
   constructor(
     private formBuildaer: FormBuilder,
@@ -48,6 +48,7 @@ export class EnrollmentsDialogComponent {
   }
 
   onSubmit(): void {
+  
     console.log(this.enrolForm.value);
     this.matDialogRef.close(this.enrolForm.value);
   }
