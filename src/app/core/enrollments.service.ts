@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { EnrollmentsInterface } from '../features/dashboard/enrollments/models/enrollments.interface';
+
 import { Observable, of, delay } from 'rxjs';
 import { StudentsService } from './students.service';
 import { CoursesService } from './courses.service';
+import { Enrols } from '../features/dashboard/enrollments/models/enrols';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,21 @@ export class EnrollmentsService {
 
   constructor(private studentarr : StudentsService, private coursearr: CoursesService ){}
 
-  private MY_DATABASE : EnrollmentsInterface[] = [
+  private MY_DATABASE : Enrols[] = [
     {      
+      id: '1',
       alumno: 'JOSE MANUEL',
       curso: 'BE-1'
     },
-    {      
+    {   
+      id:'2',   
       alumno: 'Ricardo',
       curso: 'FE-1'
     },
    
   ];
 
-  getEnrol(): Observable<EnrollmentsInterface[]> {
+  getEnrol(): Observable<Enrols[]> {
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.MY_DATABASE);
@@ -42,8 +45,8 @@ export class EnrollmentsService {
 
   }
 
-  getEnrollments(): Observable<EnrollmentsInterface[]> {
-    return of<EnrollmentsInterface[]>(this.MY_DATABASE).pipe(delay(400));
+  getEnrollments(): Observable<Enrols[]> {
+    return of<Enrols[]>(this.MY_DATABASE).pipe(delay(400));
   }
 
   // addEnrollment(): Observable<EnrollmentsInterface[]> {
@@ -54,7 +57,7 @@ export class EnrollmentsService {
   //   return this.getEnrollments();
   // }
 
-  addEnrollment(enrol: EnrollmentsInterface): Observable<EnrollmentsInterface[]> {
+  addEnrollment(enrol: Enrols): Observable<Enrols[]> {
   
     this.MY_DATABASE.push(enrol);
     return new Observable((observer) => {

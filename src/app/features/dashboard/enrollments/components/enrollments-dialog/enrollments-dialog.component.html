@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ editingEnrollments ? "Editar Inscripción" : "Crear Inscripción" }}</h2>
+<mat-dialog-content>
+    <form [formGroup]="enrolForm">
+        <mat-form-field appearance="fill" class="col-12 md:col-5">
+            <mat-label>Id del Curso</mat-label>
+            @if (editingEnrollments) {
+              <input matInput disabled value="{{ editingEnrollments.id }}" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
+            } @else {
+              <input matInput name="id" formControlName="id" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
+            }
+          </mat-form-field>
+          <select [(value)]="alumno" class="mat-primary">
+            <option *ngFor="let getLisStudents of getLisStudents()" [value]="getLisStudents.name">
+                {{getLisStudents.name}}
+            </option>
+        </select>
+        <select [(value)]="cours" class="mat-primary">
+            <option *ngFor="let getLisCourse of getLisCourses()" [value]="getLisCourse.title">
+                {{getLisCourse.title}}
+            </option>
+        </select>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="onSubmit()">Crear</button>
+</mat-dialog-actions>

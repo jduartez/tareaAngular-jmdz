@@ -16,9 +16,11 @@ import { EnrollmentsModule } from './enrollments/enrollments.module';
 
 
 
+
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    
   ],  
   exports:[DashboardComponent],
   imports: [

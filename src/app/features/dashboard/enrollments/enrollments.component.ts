@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { EnrollmentsInterface } from './models/enrollments.interface';
+import { Enrols } from './models/enrols';
 import { EnrollmentsService } from '../../../core/enrollments.service';
 import { MatDialog } from '@angular/material/dialog';
-
+import { EnrollmentsDialogComponent } from './components/enrollments-dialog/enrollments-dialog.component';
 
 @Component({
   selector: 'app-enrollments',
@@ -11,37 +10,23 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './enrollments.component.scss'
 })
 export class EnrollmentsComponent {
-
   displayedColumns: string[] = [
+    'id',
     'alumno',
     'curso',
     'actions',
   ];
 
-  
-
+  dataEnrol: Enrols[] = [];
   isLoading = false;
-  // enrollments$: Observable<Enrollment[]>;
-  enrollments: EnrollmentsInterface[] = [];
 
-  mySubject$ = new Subject();
-  myObservable$ = new Observable((subscriber) => subscriber.next(1));
-
-  alumn:any;
+  alumno:any;
   cours:any;
 
   constructor(
-    private enrollmentsService: EnrollmentsService,
     private matDialog: MatDialog,
-  ) {
-    this.mySubject$.next(1);
-
-    this.enrollmentsService.getEnrollments().subscribe({
-      next: (v) => (this.enrollments = v),
-      complete: () => (this.isLoading = false),
-    });
-   
-  }
+    private enrolsService: EnrollmentsService,
+  ) {}
 
   ngOnInit() {
     this.loadEnrollments();
@@ -49,41 +34,27 @@ export class EnrollmentsComponent {
 
   loadEnrollments() {
     this.isLoading = true;
-    this.enrollmentsService.getEnrol().subscribe((enrolments) => {
-      this.enrollments = enrolments;
+    this.enrolsService.getEnrol().subscribe((enrol) => {
+      this.dataEnrol = enrol;
       this.isLoading = false;
     });
   }
 
+  enrol: string = '';
 
-  getLisStudents(){
-    return this.enrollmentsService.getSelectStudent();
-  }
-
-  getLisCourses(){
-    return this.enrollmentsService.getSelectCourses();
-  }
-
-  // addEnrollment(): void {
-  //   this.enrollmentsService.addEnrollment().subscribe({
-  //     next: (v) => (this.enrollments = v),
-  //   });
-
-   // this.notifierService.sendNotification('Se agrego una inscripcion!');
-  //}
 
   openDialog(): void {
     this.matDialog
-      .open(EnrollmentsComponent)
+      .open(EnrollmentsDialogComponent)
       .afterClosed()
       .subscribe({
         next: (enrol) => {
         
           this.isLoading = true;
 
-          this.enrollmentsService.addEnrollment(enrol).subscribe({
-            next: (enroles) => {
-              this.enrollments = [...enroles];
+          this.enrolsService.addEnrollment(enrol).subscribe({
+            next: (enrols) => {
+              this.dataEnrol = [...enrols];
             },
             complete: () => {
               this.isLoading = false;
@@ -94,6 +65,38 @@ export class EnrollmentsComponent {
       });
   }
 
+  getLisStudents(){
+    return this.enrolsService.getSelectStudent();
+  }
 
+  getLisCourses(){
+    return this.enrolsService.getSelectCourses();
+  }
+
+  editEnrol(enrol: Enrols) {
+    this.matDialog
+      .open(EnrollmentsDialogComponent, {
+        data: enrol,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (enrol) => {
+          console.log(enrol);
+
+          if (!!enrol) {
+            this.dataEnrol= this.dataEnrol.map((c) => {
+              if (c.id === enrol.id) {
+                return enrol;
+              }
+              return c;
+            });
+          }
+        },
+      });
+  }
+
+  deleteEnrolById(id: string) {
+    this.dataEnrol = this.dataEnrol.filter((enrol) => enrol.id !== id);
+  }
 
 }
