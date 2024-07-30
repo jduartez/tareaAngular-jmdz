@@ -9,16 +9,36 @@
               <input matInput name="id" formControlName="id" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
             }
           </mat-form-field>
-          <select [(value)]="alumno" class="mat-primary">
-            <option *ngFor="let getLisStudents of getLisStudents()" [value]="getLisStudents.name">
-                {{getLisStudents.name}}
-            </option>
-        </select>
-        <select [(value)]="cours" class="mat-primary">
-            <option *ngFor="let getLisCourse of getLisCourses()" [value]="getLisCourse.title">
-                {{getLisCourse.title}}
-            </option>
-        </select>
+
+          <mat-form-field>
+            <mat-label>Estudiantes</mat-label>
+            
+
+            <mat-select [formControl]="alum" required>
+              <mat-option>--</mat-option>
+              @for (alum of getLisStudents(); track alum) {
+                <mat-option [value]="alum">{{alum.name}}</mat-option>
+              }
+            </mat-select>
+
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Cursos</mat-label>
+            
+
+            <mat-select [formControl]="cur" required>
+              <mat-option>--</mat-option>
+              @for (cur of getLisCourses(); track cur) {
+                <mat-option [value]="cur">{{cur.title}}</mat-option>
+              }
+            </mat-select>
+
+          </mat-form-field>
+
+
+         
+       
     </form>
 </mat-dialog-content>
 

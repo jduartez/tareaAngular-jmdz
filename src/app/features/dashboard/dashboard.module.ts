@@ -13,6 +13,7 @@ import {MatListModule} from '@angular/material/list';
 import { SharedModule } from '../../shared/shared.module';
 import { CoursesModule } from './courses/courses.module';
 import { EnrollmentsModule } from './enrollments/enrollments.module';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -34,7 +35,8 @@ import { EnrollmentsModule } from './enrollments/enrollments.module';
     MatListModule,
     SharedModule,
     CoursesModule,
-    EnrollmentsModule
+    EnrollmentsModule,
+    MatSelectModule
   ]
 })
 export class DashboardModule { }

@@ -1,10 +1,20 @@
 
 import { Component, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesDialogComponent } from '../../../courses/components/courses-dialog/courses-dialog.component';
 import { Enrols } from '../../models/enrols';
 import { EnrollmentsService } from '../../../../../core/enrollments.service';
+
+interface alum {
+  value: string;
+  viewValue: string;
+}
+
+interface cur {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-enrollments-dialog',
@@ -15,8 +25,9 @@ export class EnrollmentsDialogComponent {
   enrolForm!: FormGroup;
   isEditing: boolean = false;
 
-  alumno:any;
-  cours:any;
+  
+  cur =  new FormControl('', Validators.required);
+  alum = new FormControl('', Validators.required);
 
   constructor(
     private formBuildaer: FormBuilder,
@@ -26,6 +37,7 @@ export class EnrollmentsDialogComponent {
     
   ) {
     this.enrolForm = this.formBuildaer.group({
+      id:[],
       alumno: [],
       curso: [],
     });
