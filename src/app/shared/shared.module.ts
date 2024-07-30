@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InitcapPipe } from './pipes/initcap.pipe';
 import { ResaltadoDirective } from './directives/resaltado.directive';
 import { FormatrutPipe } from './pipes/formatrut.pipe';
+import { FontsizeDirective } from './directives/fontsize.directive';
 
 
 
@@ -10,11 +11,12 @@ import { FormatrutPipe } from './pipes/formatrut.pipe';
   declarations: [
     InitcapPipe,
     ResaltadoDirective,
-    FormatrutPipe
+    FormatrutPipe,
+    FontsizeDirective
   ],
   imports: [
     CommonModule
   ],
-  exports:[InitcapPipe, ResaltadoDirective, FormatrutPipe]
+  exports:[InitcapPipe, ResaltadoDirective, FormatrutPipe,FontsizeDirective]
 })
 export class SharedModule { }

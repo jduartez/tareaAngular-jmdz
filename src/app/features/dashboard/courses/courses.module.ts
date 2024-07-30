@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { CoursesdetailsDialogComponent } from './components/coursesdetails-dialog/coursesdetails-dialog.component';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { CoursesdetailsDialogComponent } from './components/coursesdetails-dialo
     MatDatepickerModule,
     MatProgressSpinnerModule,
     RouterModule,
+    SharedModule
   ]
 })
 export class CoursesModule { }
