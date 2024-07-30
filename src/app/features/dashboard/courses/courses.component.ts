@@ -4,6 +4,7 @@ import { Course } from './models/courses.interface';
 import { CoursesService } from '../../../core/courses.service';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
 import { CoursesdetailsDialogComponent } from './components/coursesdetails-dialog/coursesdetails-dialog.component';
+import { crearId } from '../../../shared/utils/creaid';
 
 @Component({
   selector: 'app-courses',
@@ -56,7 +57,8 @@ export class CoursesComponent {
 
           this.coursesService.addCourse(course).subscribe({
             next: (courses) => {
-              this.dataCourse = [...courses];
+              course['id'] = crearId(3)
+              this.dataCourse = [...courses, course];
             },
             complete: () => {
               this.isLoading = false;
@@ -114,6 +116,8 @@ export class CoursesComponent {
 
 
   deleteCourseById(id: string) {
-    this.dataCourse = this.dataCourse.filter((course) => course.id !== id);
+    if(confirm('Esta seguro de eliminar el curso' + id)){
+      this.dataCourse = this.dataCourse.filter((course) => course.id !== id);
+    }
   }
 }

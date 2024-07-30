@@ -49,7 +49,7 @@ export class EnrollmentsDialogComponent {
 
   onSubmit(): void {
   
-    console.log(this.enrolForm.value);
+    //console.log(this.enrolForm.value);
     this.matDialogRef.close(this.enrolForm.value);
   }
 

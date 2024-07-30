@@ -3,7 +3,7 @@
 <mat-dialog-content>
   <form [formGroup]="studentsForm">
     
-    <mat-form-field class="col-12 md:col-5">
+    <!-- <mat-form-field class="col-12 md:col-5">
       <mat-label>Id del Curso</mat-label>
       @if (editingStudents) {
       <input matInput disabled value="{{ editingStudents.id }}" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>     
@@ -11,7 +11,7 @@
       <input matInput name="id" formControlName="id" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>     
       }
       <mat-error>El campo es requerido</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     
     <mat-form-field class="col-12 md:col-5">
       <mat-label>Nombre del Estudiante</mat-label>
@@ -30,12 +30,7 @@
       <input matInput name="rut" formControlName="rut" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
       <mat-error>El campo es requerido</mat-error>
     </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label>Rut del Estudiante</mat-label>
-      <input matInput name="rut" formControlName="rut" />
-      <mat-error>El campo es requerido</mat-error>
-    </mat-form-field>
+    
 
     <mat-form-field class="col-12 md:col-5">
       <mat-label>Estado del Estudiante</mat-label>

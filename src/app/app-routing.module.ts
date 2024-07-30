@@ -12,11 +12,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
+  },  
   {
     path: 'dashboard',
     component: DashboardComponent,

@@ -9,7 +9,7 @@ export class StudentsService {
 
   private students : Students[] = [
     {
-      id: '1',
+      id: 'UD1',
       name: 'JOSE MANUEL',
       last_name: 'DUARTE',
       rut: '11123456-7',
@@ -18,7 +18,7 @@ export class StudentsService {
       endDate: new Date(),
     },
     {
-      id: '2',
+      id: 'UD2',
       name: 'Ricardo',
       last_name: 'Araya',
       rut: '12456789-0',
@@ -27,10 +27,28 @@ export class StudentsService {
       endDate: new Date(),
     },
     {
-      id: '3',
+      id: 'UD3',
       name: 'Valeria',
       last_name: 'Varela',
       rut: '15678921-3',
+      status: 'Aprobado',
+      startDate: new Date(),
+      endDate: new Date(),
+    },
+    {
+      id: 'UD4',
+      name: 'Daniela',
+      last_name: 'Acuña',
+      rut: '17456987-3',
+      status: 'Aprobado',
+      startDate: new Date(),
+      endDate: new Date(),
+    },
+    {
+      id: 'UD4',
+      name: 'Sophia',
+      last_name: 'Letellier',
+      rut: '20145698-2',
       status: 'Aprobado',
       startDate: new Date(),
       endDate: new Date(),
@@ -57,7 +75,7 @@ export class StudentsService {
   }
 
   addStudents(student: Students): Observable<Students[]> {
-    this.students.push(student);
+    //this.students.push(student);
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.students);

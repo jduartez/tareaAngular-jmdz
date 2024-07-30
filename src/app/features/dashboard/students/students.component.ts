@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { Students } from './models';
 import { StudentsService } from '../../../core/students.service';
+import { crearId } from '../../../shared/utils/creaid';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class StudentsComponent {
 
   isLoading = false;
   constructor(private matDialog: MatDialog, private studentService: StudentsService ) { }
-  students: string = '';
+
 
   ngOnInit() {
     this.loadStudents();
@@ -39,18 +40,20 @@ export class StudentsComponent {
     });
   }
 
+  student: string = '';
   openDialog(): void {
     this.matDialog
       .open(StudentsDialogComponent)
       .afterClosed()
       .subscribe({
-        next: (students) => {
+        next: (student) => {
          
           this.isLoading = true;
 
-          this.studentService.addStudents(students).subscribe({
+          this.studentService.addStudents(student).subscribe({
             next: (students) => {
-              this.dataStudents = [...students];
+              student['id'] = crearId(3);
+              this.dataStudents = [...students, student];
             },
             complete: () => {
               this.isLoading = false;
@@ -84,7 +87,9 @@ export class StudentsComponent {
 
 
   deleteStudent(id: string) {
-    this.dataStudents = this.dataStudents.filter((student) => student.id !== id);
+    if(confirm('Esta seguro de eliminar al estudiante: ' + id)){
+      this.dataStudents = this.dataStudents.filter((student) => student.id !== id);
+    }
   }
 
 }

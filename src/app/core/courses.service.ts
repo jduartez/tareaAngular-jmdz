@@ -9,7 +9,7 @@ import { Course } from '../features/dashboard/courses/models/courses.interface';
 export class CoursesService {
   private courses: Course[] = [
     {
-      id: 'BE-1',
+      id: 'BE1',
       title: 'NestJs',
       description: 'Curso de Nestjs',
       status: 'Pendiente',
@@ -17,7 +17,7 @@ export class CoursesService {
       endDate: new Date(),
     },
     {
-      id: 'FE-1',
+      id: 'FE1',
       title: 'Angular',
       description: 'Curso de Angular',
       status: 'Pendiente',
@@ -25,9 +25,25 @@ export class CoursesService {
       endDate: new Date(),
     },
     {
-      id: 'BBDD-1',
+      id: 'BE2',
       title: 'SQL',
       description: 'Curso de Bases de Datos',
+      status: 'Pendiente',
+      startDate: new Date(),
+      endDate: new Date(),
+    },
+    {
+      id: 'BE3',
+      title: 'Photoshop',
+      description: 'Curso de Ilustraciones',
+      status: 'Pendiente',
+      startDate: new Date(),
+      endDate: new Date(),
+    },
+    {
+      id: 'BE4',
+      title: 'Oracle',
+      description: 'Oracle express',
       status: 'Pendiente',
       startDate: new Date(),
       endDate: new Date(),
@@ -54,7 +70,7 @@ export class CoursesService {
   }
 
   addCourse(course: Course): Observable<Course[]> {
-    this.courses.push(course);
+    //this.courses.push(course);
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.courses);

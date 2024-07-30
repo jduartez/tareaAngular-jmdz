@@ -1,14 +1,14 @@
 <h2 mat-dialog-title>{{ editingEnrollments ? "Editar Inscripción" : "Crear Inscripción" }}</h2>
 <mat-dialog-content>
     <form [formGroup]="enrolForm">
-        <mat-form-field appearance="fill" class="col-12 md:col-5">
+        <!-- <mat-form-field appearance="fill" class="col-12 md:col-5">
             <mat-label>Id del Curso</mat-label>
             @if (editingEnrollments) {
               <input matInput disabled value="{{ editingEnrollments.id }}" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
             } @else {
               <input matInput name="id" formControlName="id" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary"/>
             }
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field>
             <mat-label>Estudiantes</mat-label>

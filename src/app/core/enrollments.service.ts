@@ -14,14 +14,14 @@ export class EnrollmentsService {
 
   private MY_DATABASE : Enrols[] = [
     {      
-      id: '1',
+      id: 'UD1',
       alumno: 'JOSE MANUEL',
-      curso: 'BE-1'
+      curso: 'BE1'
     },
     {   
-      id:'2',   
+      id:'UD2',   
       alumno: 'Ricardo',
-      curso: 'FE-1'
+      curso: 'FE1'
     },
    
   ];
@@ -48,18 +48,10 @@ export class EnrollmentsService {
   getEnrollments(): Observable<Enrols[]> {
     return of<Enrols[]>(this.MY_DATABASE).pipe(delay(400));
   }
-
-  // addEnrollment(): Observable<EnrollmentsInterface[]> {
-  //   this.MY_DATABASE.push({
-  //     alumno: 'Esteban',
-  //     curso: 'FE-2',
-  //   });
-  //   return this.getEnrollments();
-  // }
-
+ 
   addEnrollment(enrol: Enrols): Observable<Enrols[]> {
   
-    this.MY_DATABASE.push(enrol);
+    //this.MY_DATABASE.push(enrol);
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.MY_DATABASE);

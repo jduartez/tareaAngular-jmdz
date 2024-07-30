@@ -3,6 +3,7 @@ import { Enrols } from './models/enrols';
 import { EnrollmentsService } from '../../../core/enrollments.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentsDialogComponent } from './components/enrollments-dialog/enrollments-dialog.component';
+import { crearId } from '../../../shared/utils/creaid';
 
 @Component({
   selector: 'app-enrollments',
@@ -54,7 +55,8 @@ export class EnrollmentsComponent {
 
           this.enrolsService.addEnrollment(enrol).subscribe({
             next: (enrols) => {
-              this.dataEnrol = [...enrols];
+              enrol['id'] = crearId(3);
+              this.dataEnrol = [...enrols, enrol];
             },
             complete: () => {
               this.isLoading = false;
@@ -96,7 +98,9 @@ export class EnrollmentsComponent {
   }
 
   deleteEnrolById(id: string) {
-    this.dataEnrol = this.dataEnrol.filter((enrol) => enrol.id !== id);
+    if(confirm('Esta seguro de eliminar?')){
+      this.dataEnrol = this.dataEnrol.filter((enrol) => enrol.id !== id);
+    }
   }
 
 }

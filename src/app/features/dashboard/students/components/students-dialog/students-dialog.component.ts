@@ -26,7 +26,7 @@ export class StudentsDialogComponent implements OnInit {
 
   ) {
     this.studentsForm = this.formBuildaer.group({
-      id: ['', Validators.required],
+      //id: ['', Validators.required],
       name: ['', Validators.required],
       last_name: ['', Validators.required],
       rut: ['', Validators.required],
