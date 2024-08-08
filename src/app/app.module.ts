@@ -8,6 +8,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
     AppRoutingModule,
     DashboardModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [
     provideAnimationsAsync(),
