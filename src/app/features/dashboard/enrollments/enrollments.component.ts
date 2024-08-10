@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Enrols } from './models/enrols';
-import { EnrollmentsService } from '../../../core/enrollments.service';
+import { EnrollmentsService } from '../../../core/services/enrollments.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentsDialogComponent } from './components/enrollments-dialog/enrollments-dialog.component';
 import { crearId } from '../../../shared/utils/creaid';

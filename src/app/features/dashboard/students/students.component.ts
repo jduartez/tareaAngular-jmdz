@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { Students } from './models';
-import { StudentsService } from '../../../core/students.service';
+import { StudentsService } from '../../../core/services/students.service';
 import { crearId } from '../../../shared/utils/creaid';
 
 

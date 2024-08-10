@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../core/store';
+import { User } from './users/models';
+import { selectAuthUser } from '../../core/store/auth/auth.selectors';
+import { environment } from '../../environments/environment.development';
 
 
 @Component({
@@ -10,8 +17,19 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   showFiller = false;
 
+  authUser$: Observable<User | null>;
+
+  nombreEntorno = environment.envName;
+
+  constructor(
+    private authService: AuthService,
+    private store: Store<RootState>
+  ) {
+    this.authUser$ = this.store.select(selectAuthUser);
+  }
+
   logout() {
-    return 0;
+    this.authService.logout();
   }
 
 }

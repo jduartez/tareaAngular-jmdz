@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Students } from '../features/dashboard/students/models';
+import { Students } from '../../features/dashboard/students/models';
 import { map, Observable } from 'rxjs';
 
 @Injectable({

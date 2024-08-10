@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Course } from '../features/dashboard/courses/models/courses.interface';
+import { Course } from '../../features/dashboard/courses/models/courses.interface';
 
 
 @Injectable({

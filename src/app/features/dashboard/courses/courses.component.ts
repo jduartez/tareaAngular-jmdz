@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Course } from './models/courses.interface';
-import { CoursesService } from '../../../core/courses.service';
+import { CoursesService } from '../../../core/services/courses.service';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
 import { CoursesdetailsDialogComponent } from './components/coursesdetails-dialog/coursesdetails-dialog.component';
 import { crearId } from '../../../shared/utils/creaid';

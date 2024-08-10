@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
 import { StudentsService } from './students.service';
 import { CoursesService } from './courses.service';
-import { Enrols } from '../features/dashboard/enrollments/models/enrols';
+import { Enrols } from '../../features/dashboard/enrollments/models/enrols';
 
 @Injectable({
   providedIn: 'root'
