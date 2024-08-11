@@ -25,11 +25,21 @@ export class StudentsComponent {
   dataStudents: Students[] = [];
 
   isLoading = false;
+  datos: any;
+
   constructor(private matDialog: MatDialog, private studentService: StudentsService ) { }
 
 
   ngOnInit() {
-    this.loadStudents();
+    //this.loadStudents();
+    this.studentService.getData().subscribe(
+      (response) => {
+        this.datos = response;
+      },
+      (error) => {
+        console.error('Error al obtener los datos', error);
+      }
+    );
   }
 
   loadStudents() {

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Students } from '../../features/dashboard/students/models';
 import { map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsService {
+
+  constructor(private http: HttpClient) { }
 
   private students : Students[] = [
     {
@@ -54,6 +58,10 @@ export class StudentsService {
       endDate: new Date(),
     },
   ];
+
+  getData(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/students`);
+  }
 
   getStudents(): Observable<Students[]> {
     return new Observable((observer) => {
