@@ -69,7 +69,7 @@ export class StudentsComponent {
             next: (students) => {
               student['id'] = crearId(3);
               this.dataStudents = [...students, student];
-              this.studentService.createData(student).subscribe((res)=>{ alert('Registro Creado'); });
+              this.studentService.createData(student).subscribe((res)=>{ alert('Registro Creado'); window.location.reload();});
             },
             complete: () => {
               this.isLoading = false;
@@ -102,7 +102,6 @@ export class StudentsComponent {
 
   openDialogDetails(id:number): void {
     this.matDialog.open(StudentsdetailsDialogComponent, {
-      width: '250px',
       data:{id:id}
     });
   }

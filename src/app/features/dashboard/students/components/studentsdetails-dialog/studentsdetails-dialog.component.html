@@ -2,21 +2,27 @@
 <div mat-dialog-content>
   
   <mat-form-field  class="col-12 md:col-5">
-    <h2 appFontsize>Id del Alumno</h2>        
+    <h2 appFontsize>Rut del Alumno</h2>        
    
-        <p>{{ data.id }}</p>
+        <p>{{ user.rut | formatrut }}</p>
    
   </mat-form-field>
 
   <mat-form-field class="col-12 md:col-5">
     <h2 appFontsize>Nombre</h2>       
-    {{data}}
+    {{user.name}}
+  
+  </mat-form-field>
+
+  <mat-form-field class="col-12 md:col-5">
+    <h2 appFontsize>Apellido</h2>       
+    {{user.lastname}}
   
   </mat-form-field>
 
   <mat-form-field class="col-12 md:col-5">
     <h2 appFontsize>fecha</h2>
-    {{data}}
+    {{user.fmodification | date : "dd/MM/yyyy"}}
   </mat-form-field>
 
 </div>
