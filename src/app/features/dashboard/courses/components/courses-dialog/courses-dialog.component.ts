@@ -36,7 +36,7 @@ export class CoursesDialogComponent implements OnInit{
   }
 
   onSubmit(): void {
-    console.log(this.courseForm.value);
+    //console.log(this.courseForm.value);
     this.matDialogRef.close(this.courseForm.value);
   }
 

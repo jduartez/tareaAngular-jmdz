@@ -36,7 +36,7 @@ export class EnrollmentsService {
   }
 
   getSelectStudent(){
-    console.log(this.studentarr.getStudentsList());
+    //console.log(this.studentarr.getStudentsList());
     return this.studentarr.getStudentsList();
   }
 

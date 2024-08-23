@@ -78,7 +78,7 @@ export class CoursesComponent {
       .afterClosed()
       .subscribe({
         next: (course) => {
-          console.log(course);
+          //console.log(course);
 
           if (!!course) {
             this.dataCourse = this.dataCourse.map((c) => {
@@ -101,7 +101,7 @@ export class CoursesComponent {
       .afterClosed()
       .subscribe({
         next: (course) => {
-          console.log(course);
+          //console.log(course);
 
           if (!!course) {
             this.dataCourse = this.dataCourse.map((c) => {

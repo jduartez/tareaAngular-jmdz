@@ -83,7 +83,7 @@ export class EnrollmentsComponent {
       .afterClosed()
       .subscribe({
         next: (enrol) => {
-          console.log(enrol);
+          //console.log(enrol);
 
           if (!!enrol) {
             this.dataEnrol= this.dataEnrol.map((c) => {
