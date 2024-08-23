@@ -5,6 +5,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { Students } from '../../models';
+import { StudentsService } from '../../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students-dialog',
@@ -18,21 +19,20 @@ export class StudentsDialogComponent implements OnInit {
   studentsForm: FormGroup;
   isEditing: boolean = false;
   submitted = false;
+  items: any[] = [];
   
   constructor(
+    private studentService: StudentsService,
     private formBuildaer: FormBuilder,
     private matDialogRef: MatDialogRef<StudentsDialogComponent>, 
     @Inject(MAT_DIALOG_DATA) public editingStudents?: Students,
 
   ) {
     this.studentsForm = this.formBuildaer.group({
-      //id: ['', Validators.required],
+     
       name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      rut: ['', Validators.required],
-      status: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      lastname: ['', Validators.required],
+      rut: ['', Validators.required], 
 
     });
 
@@ -42,18 +42,30 @@ export class StudentsDialogComponent implements OnInit {
     }
 
   }
+
+  loadItems(): void {
+    this.studentService.getData().subscribe((data) => {
+      this.items = data;
+    });
+  }
+
   onSubmit(): void {
     if(this.studentsForm.invalid){
       this.submitted = false; 
       return alert("Error... Todos los campos son obligatorios");
       
     }else{
-      this.submitted = true;
+      this.submitted = true;     
+      this.studentService.editData(this.studentsForm.value,this.editingStudents?.id).subscribe((res)=>{ alert('Registro Actualizado'); window.location.reload(); });      
+           
+      
       this.matDialogRef.close(this.studentsForm.value);
+      
     }
    
   }
   ngOnInit() {
-    this.submitted = false;  
+    this.loadItems();   
+    this.submitted = false; 
   }
 }

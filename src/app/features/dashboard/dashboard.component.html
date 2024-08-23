@@ -27,7 +27,7 @@
         >Cursos</a
       >
      
-      <a
+      <a *ngIf="tpousuario ==='ADMIN'"
         mat-list-item
         routerLink="enrollments"
         routerLinkActive
@@ -36,7 +36,6 @@
         >Inscripciones</a
       >
       <a
-        *ngIf="(authUser$ | async)?.role === 'ADMIN'"
         mat-list-item
         routerLink="students"
         routerLinkActive
@@ -47,7 +46,6 @@
       <a (click)="logout()" mat-list-item>Cerrar sesion</a>
     </mat-nav-list>
 
-    {{ authUser$ | async | json }}
   </mat-drawer>
   <!-- SIDEBAR FIN -->
 
@@ -70,7 +68,7 @@
           >
             <mat-icon>menu</mat-icon>
           </button>
-          <span>Entrega 3 JMDZ | {{ nombreEntorno }}</span>
+          <span>Entrega Final JMDZ | {{ nombreEntorno }}</span>
         </div>
         @if (authUser$ | async; as user) {
         <div>

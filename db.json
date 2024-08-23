@@ -1,0 +1,79 @@
+{
+    "users": [
+      {
+        "id": "43j9",
+        "firstName": "Josue",
+        "lastName": "Baez",
+        "email": "jbaez@mail.com",
+        "password": "123456",
+        "token": "jfsdk43dsakdjasb4Dsdsa$@#fS",
+        "role": "ADMIN"
+      },
+      {
+        "id": "53j9",
+        "firstName": "Naruto",
+        "lastName": "Uzumaki",
+        "email": "test@mail.com",
+        "password": "123456",
+        "token": "jfsdk43bghkr3db4Dsdsa$d@#S",
+        "role": "EMPLOYEE"
+      }
+    ],
+    "courses": [
+      {
+        "id": "abc123",
+        "name": "Javascript Avanzado",
+        "price": 9999
+      },
+      {
+        "id": "c88c",
+        "name": "Angular",
+        "price": 15000
+      },
+      {
+        "id": "43c9",
+        "name": "Angular",
+        "price": 15000
+      }
+    ],
+    "products": [
+      {
+        "name": "test",
+        "price": 5000,
+        "id": "f459"
+      },
+      {
+        "name": "test",
+        "price": 3000,
+        "id": "fc6f"
+      }
+    ],
+    "students": [
+      {
+        "id": "2c92",
+        "name": "Martin"
+      }
+    ],
+    "sales": [
+      {
+        "productId": "f459",
+        "studentId": "2c92",
+        "id": "2c92"
+      },
+      {
+        "id": "5bd6",
+        "productId": "fc6f",
+        "studentId": "2c92"
+      },
+      {
+        "id": "89ac",
+        "productId": "fc6f",
+        "studentId": "2c92"
+      },
+      {
+        "id": "f83d",
+        "productId": "fc6f",
+        "studentId": "2c92"
+      }
+    ]
+  }

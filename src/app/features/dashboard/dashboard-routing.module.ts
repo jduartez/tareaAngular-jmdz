@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'enrollments',
-    canActivate: [adminGuard],
+    //canActivate: [adminGuard],
     loadChildren: () =>
       import('./enrollments/enrollments.module').then((m) => m.EnrollmentsModule),
     

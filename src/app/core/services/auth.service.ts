@@ -23,12 +23,13 @@ export class AuthService {
     private notifier: NotifierService    
   ) {}
 
-  login(data: { email: string; password: string }) {
+  login(data: { email: string; password: string; role: string }) {
     this.http
       .get<User[]>(environment.apiUrl + '/users', {
         params: {
           email: data.email,
           password: data.password,
+          role: data.role
         },
       })
       .subscribe({
@@ -38,13 +39,14 @@ export class AuthService {
           } else {
             const authUser = response[0];
             localStorage.setItem('token', authUser.token);
+            localStorage.setItem('tpousuairo', data.role);
             this.store.dispatch(setAuthUser({ payload: authUser }));
 
             this.router.navigate(['dashboard', 'home']);
           }
         },
         error: (err) => {
-          this.notifier.sendNotification('Error al iniciar sesion...' + JSON.stringify(err));
+          this.notifier.sendNotification('Error al iniciar sesion...');
         },
       });
   }

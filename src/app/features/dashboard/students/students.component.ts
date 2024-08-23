@@ -4,6 +4,7 @@ import { StudentsDialogComponent } from './components/students-dialog/students-d
 import { Students } from './models';
 import { StudentsService } from '../../../core/services/students.service';
 import { crearId } from '../../../shared/utils/creaid';
+import { StudentsdetailsDialogComponent } from './components/studentsdetails-dialog/studentsdetails-dialog.component';
 
 
 @Component({
@@ -17,20 +18,24 @@ export class StudentsComponent {
     'id',
     'name',
     'rut',
-    'status',
-    'startDate',
-    'endDate',
+    // 'status',
+    // 'startDate',
+    // 'endDate',
     'actions',
   ];
   dataStudents: Students[] = [];
 
   isLoading = false;
   datos: any;
+  tpousuario: any;
 
-  constructor(private matDialog: MatDialog, private studentService: StudentsService ) { }
+  constructor(
+    private matDialog: MatDialog, 
+    private studentService: StudentsService ) { }
 
 
   ngOnInit() {
+    this.tpousuario = localStorage.getItem('tpousuairo');
     //this.loadStudents();
     this.studentService.getData().subscribe(
       (response) => {
@@ -44,7 +49,7 @@ export class StudentsComponent {
 
   loadStudents() {
     this.isLoading = true;
-    this.studentService.getStudents().subscribe((students) => {
+    this.studentService.getData().subscribe((students) => {
       this.dataStudents = students;
       this.isLoading = false;
     });
@@ -64,6 +69,7 @@ export class StudentsComponent {
             next: (students) => {
               student['id'] = crearId(3);
               this.dataStudents = [...students, student];
+              this.studentService.createData(student).subscribe((res)=>{ alert('Registro Creado'); });
             },
             complete: () => {
               this.isLoading = false;
@@ -73,32 +79,39 @@ export class StudentsComponent {
       });
   }
 
-  editStudent(student: Students) {
-    this.matDialog
-      .open(StudentsDialogComponent, {
-        data: student,
-      })
-      .afterClosed()
-      .subscribe({
-        next: (student) => {
-          console.log(student);
+   editStudent(student: Students) {
+    // this.studentService.editData(student);
+     this.matDialog
+       .open(StudentsDialogComponent, {
+         data: student,         
+       })
+       .afterClosed()
+       .subscribe({
+         next: (student) => {
+           if (!!student) {
+             this.dataStudents = this.dataStudents.map((c) => {
+               if (c.id === student.id) {
+                 return student;
+               }
+               return c;
+             });
+           }
+         },
+       });
+  }
 
-          if (!!student) {
-            this.dataStudents = this.dataStudents.map((c) => {
-              if (c.id === student.id) {
-                return student;
-              }
-              return c;
-            });
-          }
-        },
-      });
+  openDialogDetails(id:number): void {
+    this.matDialog.open(StudentsdetailsDialogComponent, {
+      width: '250px',
+      data:{id:id}
+    });
   }
 
 
   deleteStudent(id: string) {
     if(confirm('Esta seguro de eliminar al estudiante: ' + id)){
       this.dataStudents = this.dataStudents.filter((student) => student.id !== id);
+      this.studentService.deleteData(this.student, id).subscribe((res) => {window.location.reload();});
     }
   }
 

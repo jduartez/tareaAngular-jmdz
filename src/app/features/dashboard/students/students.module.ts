@@ -15,12 +15,14 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { StudentsdetailsDialogComponent } from './components/studentsdetails-dialog/studentsdetails-dialog.component';
 
 
 @NgModule({
   declarations: [
     StudentsComponent,
-    StudentsDialogComponent,   
+    StudentsDialogComponent,
+    StudentsdetailsDialogComponent,   
   ],
   exports:[StudentsComponent],
   imports: [

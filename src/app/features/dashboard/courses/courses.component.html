@@ -53,11 +53,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="editCourse(element)">
+        <button *ngIf="tpousuario ==='ADMIN'" mat-icon-button color="primary" (click)="editCourse(element)">
           <mat-icon>edit</mat-icon>
         </button>
   
-        <button
+        <button *ngIf="tpousuario ==='ADMIN'"
           mat-icon-button
           color="primary"
           (click)="deleteCourseById(element.id)"

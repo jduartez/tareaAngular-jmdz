@@ -23,7 +23,7 @@ export class CoursesComponent {
   ];
 
   dataCourse: Course[] = [];
-
+  tpousuario: any;
   isLoading = false;
 
   constructor(
@@ -32,6 +32,7 @@ export class CoursesComponent {
   ) {}
 
   ngOnInit() {
+    this.tpousuario = localStorage.getItem('tpousuairo');
     this.loadCourses();
   }
 

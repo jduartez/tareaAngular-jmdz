@@ -12,8 +12,9 @@ export class LoginComponent {
 
   constructor(public authService: AuthService, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      email: ['Logan.Casper@example.org', [Validators.required, Validators.email]],
-      password: ['gGari3FwsoP2RGN', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      role: ['', [Validators.required]],
     });
   }
 
@@ -24,6 +25,7 @@ export class LoginComponent {
       const data = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
+        role: this.loginForm.get('role')?.value,
       };
       this.authService.login(data);
     }

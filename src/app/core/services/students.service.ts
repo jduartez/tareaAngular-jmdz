@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Students } from '../../features/dashboard/students/models';
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -61,6 +61,24 @@ export class StudentsService {
 
   getData(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/students`);
+  }
+
+  getDataDetailsStudent(id:number): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/students/${id}`);
+  }
+
+  editData(params: any, id:any) {        
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(`${environment.apiUrl}/students/${id}`, params,{ headers });
+  }
+
+
+  createData(params: any) {        
+    return this.http.post<any>(`${environment.apiUrl}/students`, params);
+  }
+
+  deleteData(params: any, id:any) {            
+    return this.http.delete(`${environment.apiUrl}/students/${id}`, params);
   }
 
   getStudents(): Observable<Students[]> {

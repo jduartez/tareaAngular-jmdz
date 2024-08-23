@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Datos de la API</h1>
+<div mat-dialog-content>
+  
+  <mat-form-field  class="col-12 md:col-5">
+    <h2 appFontsize>Id del Alumno</h2>        
+   
+        <p>{{ data.id }}</p>
+   
+  </mat-form-field>
+
+  <mat-form-field class="col-12 md:col-5">
+    <h2 appFontsize>Nombre</h2>       
+    {{data}}
+  
+  </mat-form-field>
+
+  <mat-form-field class="col-12 md:col-5">
+    <h2 appFontsize>fecha</h2>
+    {{data}}
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div>
